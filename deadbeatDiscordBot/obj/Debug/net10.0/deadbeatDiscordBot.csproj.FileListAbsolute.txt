@@ -32,3 +32,4 @@ C:\Users\kingc\OneDrive\Documents\deadbeatDiscordBot\deadbeatDiscordBot\obj\Debu
 C:\Users\kingc\OneDrive\Documents\deadbeatDiscordBot\deadbeatDiscordBot\obj\Debug\net10.0\deadbeatDiscordBot.pdb
 C:\Users\kingc\OneDrive\Documents\deadbeatDiscordBot\deadbeatDiscordBot\obj\Debug\net10.0\deadbeatDiscordBot.genruntimeconfig.cache
 C:\Users\kingc\OneDrive\Documents\deadbeatDiscordBot\deadbeatDiscordBot\obj\Debug\net10.0\ref\deadbeatDiscordBot.dll
+C:\Users\kingc\OneDrive\Documents\deadbeatDiscordBot\deadbeatDiscordBot\obj\Debug\net10.0\deadbeatDiscordBot.sourcelink.json

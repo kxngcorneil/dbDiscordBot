@@ -10,6 +10,7 @@ class Program
     private DiscordSocketClient? client;
     private IConfiguration? config;
     private readonly Dictionary<ulong, IWebhook> webhooks = new();
+    private readonly SemaphoreSlim webhookLock = new(1,1);
 
     static Task Main()
     {
@@ -83,6 +84,7 @@ class Program
             message.Content,
             match => match.Value
                    .Replace("x.com", "fxtwitter.com")
+                    .Replace("twitter.com", "fxtwitter.com")
         );
         
 
@@ -96,9 +98,8 @@ class Program
         string? avatarUrl = message.Author.GetAvatarUrl();
         IWebhook webhook = await GetWebhookAsync(channel);
 
-        DiscordWebhookClient webhookClient = new DiscordWebhookClient(webhook.Id, webhook.Token!);
 
-        await webhookClient.SendMessageAsync(fixedUrl, username: username, avatarUrl: avatarUrl);
+        await webhook.SendMessageAsync(text: fixedUrl, username: username, avatarUrl: avatarUrl);
         await message.DeleteAsync();
     }   
 
@@ -106,10 +107,23 @@ class Program
         if(webhooks.TryGetValue(channel.Id, out IWebhook? webhook)){
             return webhook;
         }
-        webhook = await channel.CreateWebhookAsync("Deadbeat");
-        webhooks[channel.Id] = webhook;
-        return webhook;
-    }     
+
+        IReadOnlyCollection<IWebhook> existingWebhooks = await channel.GetWebhooksAsync();
+
+        IWebhook? existingWebhook = existingWebhooks
+        .FirstOrDefault(webhook => webhook.Name == "Deadbeat");
+
+        if(existingWebhook != null)
+        {
+            webhooks[channel.Id] = existingWebhook;
+            return existingWebhook;
+        }
+
+
+        IWebhook newwWebhook = await channel.CreateWebhookAsync("Deadbeat");
+        webhooks[channel.Id] = newwWebhook;
+        return newwWebhook;
+    }
     
 
     private static readonly Regex XLinkRegex =
