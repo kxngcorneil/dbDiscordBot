@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("b6cf9d29-946e-4c4b-aa95-090769c7c66e")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("dbBotv2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f1d8e36f5bb3cf83af27e438b7266454fd78544")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+67b839150771f85d32415aa616f94ee1abe81ee6")]
 [assembly: System.Reflection.AssemblyProductAttribute("dbBotv2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("dbBotv2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
